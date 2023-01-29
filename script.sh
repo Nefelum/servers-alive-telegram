@@ -4,7 +4,7 @@ PATH_TO_IPS=$3
 
 function Ping {
     SERVERIP=$1
-    sleep 5
+    sleep 10
     ping -c 3 $SERVERIP > /dev/null 2>&1
     if [ $? -ne 0 ]
     then
