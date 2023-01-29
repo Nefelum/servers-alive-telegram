@@ -12,16 +12,19 @@ function Ping {
         text="Server $SERVERIP is down"
         curl -s -X POST https://api.telegram.org/bot$API_KEY/sendMessage -d "chat_id=$CHAT_ID" -d text="$text"
     else
-        echo "Server is OK!"
+        echo "Server $SERVERIP is OK!"
     fi
 }
 
 function InfiniteLoop {
     input_file=$1
-    while IFS= read -r line
+    while :
     do
-        Ping $line
-    done < "$input_file"
+        while IFS= read -r line
+        do
+            Ping $line
+        done < "$input_file"
+    done
 }
 
 InfiniteLoop "$PATH_TO_IPS"
