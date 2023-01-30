@@ -11,6 +11,7 @@ function Ping {
     then
         BAD_IPS_ARRAY+=("$SERVERIP")
         text="Server $SERVERIP is down"
+        echo $text
         curl -s -X POST https://api.telegram.org/bot$API_KEY/sendMessage -d "chat_id=$CHAT_ID" -d text="$text"
     else
         echo -e "\nServer $SERVERIP is OK!"
