@@ -27,6 +27,7 @@ function InfiniteLoop {
             IsDown=$(BadIpExists "$SERVERIP")
             if [ "$IsDown" = "Server $SERVERIP was down" ]; then
                 sleep 5
+                echo "Server $SERVERIP was down"
             else
                 Ping "$SERVERIP"
             fi
