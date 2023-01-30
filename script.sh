@@ -10,7 +10,7 @@ function Ping {
     if [ $? -ne 0 ]
     then
         BAD_IPS_ARRAY+=("$SERVERIP")
-        text="Server $SERVERIP is down"
+        text="Server $SERVERIP is down!"
         echo $text
         curl -s -X POST https://api.telegram.org/bot$API_KEY/sendMessage -d "chat_id=$CHAT_ID" -d text="$text"
     else
@@ -26,9 +26,9 @@ function InfiniteLoop {
         do
             SERVERIP=$line
             IsDown=$(BadIpExists "$SERVERIP")
-            if [ "$IsDown" = "Server $SERVERIP was down" ]; then
+            if [ "$IsDown" = "Server $SERVERIP was down!" ]; then
                 sleep 5
-                echo "Server $SERVERIP was down"
+                echo "Server $SERVERIP was down!"
             else
                 Ping "$SERVERIP"
             fi
@@ -42,7 +42,7 @@ function BadIpExists {
     for ip in "${BAD_IPS_ARRAY[@]}"
     do
         if [ "$check_ip" = "$ip" ]; then
-            echo "Server $check_ip was down"
+            echo "Server $check_ip was down!"
             return 1
         fi
     done
