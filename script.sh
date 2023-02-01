@@ -5,7 +5,7 @@ BAD_IPS_ARRAY=()
 
 function Ping {
     SERVERIP=$1
-    sleep 10
+    sleep 3
     ping -c 3 "$SERVERIP" > /dev/null 2>&1
     if [ $? -ne 0 ]
     then
@@ -27,7 +27,7 @@ function InfiniteLoop {
             SERVERIP=$line
             IsDown=$(BadIpExists "$SERVERIP")
             if [ "$IsDown" = "Server $SERVERIP was down!" ]; then
-                sleep 5
+                sleep 3
                 echo "Server $SERVERIP was down!"
             else
                 Ping "$SERVERIP"
